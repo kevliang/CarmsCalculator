@@ -55,7 +55,8 @@ function clearResults() {
 
 function selectIndex(index) {
   if (results.length >= index + 1) {
-    ac.val(results[index].iata);
+    var output = results[index].city + " - " + results[index].iata 
+    ac.val(output);
     clearResults();
   }  
 }
@@ -70,7 +71,7 @@ function search(e) {
   }
   
   if (ac.val().length > 0) {
-    results = _.take(fuse.search(ac.val()), 7);
+    results = _.take(fuse.search(ac.val()), 2);
     numResults = results.length;
     
     var divs = results.map(function(r, i) {
