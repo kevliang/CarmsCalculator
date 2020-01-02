@@ -8,7 +8,11 @@
 *
 {
     outline: none;
-    
+}
+
+li{
+  clear:both;
+  list-style: none;
 }
 
 html {
@@ -29,6 +33,50 @@ body
     margin: 0;
 }
 
+#autocomplete{
+  position:relative;
+  float:left;
+}
+
+button {
+  position:relative;
+  background: none;
+  border: 0px;
+  color: #888;
+  font-size: 20px;
+  float: right;
+  width: auto;
+  margin: auto;
+  font-family: sans-serif;
+  cursor: pointer;
+  padding:auto;
+
+}
+
+button:hover {
+  color: #0FC57C;
+}
+
+/* input text without focus */
+
+input[type="text"] {
+  margin: 0;
+  font-size: 18px;
+  line-height: 18px;
+  height: 18px;
+  padding: 10px;
+  border: none;
+  background: none;
+  border-radius: 6px;
+  font-family: Oswald, Lato, sans-serif;
+  color: white;
+}
+
+input[type="text"]:focus {
+  color: white;
+}
+
+
 form, input
 {
  position: absolute;
@@ -46,6 +94,49 @@ input{
     color:white;
  }
 
+input#new-task {
+  float: left;
+  width: 400px;
+}
+
+
+li * {
+  float: left;
+}
+
+li {
+  overflow: hidden;
+  padding: 20px 0;
+  border: none;
+
+}
+
+li > label {
+  font-size: 18px;
+  line-height: 40px;
+  width: 237px;
+  padding: 0 0 0 0px;
+}
+
+li >  input[type="text"] {
+  width: 226px;
+}
+
+li > .delete:hover {
+  color: #CF2323;
+}
+
+
+
+
+.container{ 
+  display:block;
+  width: 450px;
+  margin: auto;
+
+
+ }
+
 .autcomplete-wrapper{
     position: absolute;
 }
@@ -54,7 +145,7 @@ input{
   position: absolute;
   background: white;
   z-index: 1;
-  top: 350%;
+  top: 140px;
   left: 0;
   font-size: 13px;
   border: solid 1px #ddd;
@@ -99,8 +190,6 @@ input{
   border-bottom-color: #26C9FF;
   outline: solid 1px #00b6f2;
 }
-
-
 
 
 

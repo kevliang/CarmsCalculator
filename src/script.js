@@ -53,11 +53,11 @@ new Vue({
 
   mounted() {
     // D3 Projection
-    var projection = d3.geoAlbers().parallels([50,70]).scale([1500]); // scale things down so see entire US
+    var projection = d3.geoAlbers().parallels([50,70]).rotate([90,0,0]).scale([1500]); // scale things down so see entire US
     this.projection = projection;
 
     // D3 US States map
-    fetch('data/canada.json').
+    fetch('data/provinces.json').
     then(response => response.json()).
     then(states => {
 
@@ -75,7 +75,7 @@ new Vue({
     });
 
     // Airports
-    fetch('data/airports.json').
+    fetch('data/canadianairport.json').
     then(response => response.json()).
     then(airports => {
 

@@ -15,20 +15,32 @@
 </head>
 
 <body id="top" itemtype="http://schema.org/WebPage">
-<!-- form code --> 
+
+<!-- form code  -->
 <form method="post" action="">
   <section>
   <div class = "form-group">
-  	<label class ="control-label" for="dep-city"> 
-  	I'm starting my CaRMS Tour from 
-  	</label>
+   
+   <div class="container">
+  		<label class ="control-label" for="dep-city"> 
+  		I'm starting my CaRMS Tour from 
+  		</label>
+  		
+  		<p>
   		<input id ="autocomplete" type="text" name="dep-city" placeholder="City or Airport Name ..." autocomplete="off" autofocus="on">
+  		</p>
+		<button type="button">Add</button>
+		<ul id="incomplete-tasks"></ul>
+
+  	</div>
+
   </div>
-  <section>
+  </section>
+  	 
 </form>
 
 
-<!-- map code --> 
+<!-- map html 
 <div id="app" class="mileage" >
   <svg class="mileage-map" ref="map" width="1200" height="780" viewBox="-120 -180 1200 780">
     <g class="mileage-map__states" ref="states"></g>
@@ -58,31 +70,35 @@
   </svg>
 
   	<h1 class="mileage__calculations" v-show="distance">
-    	<span>{{ distance | numberWithCommas }}</span><small> tons of carbon</small>
+    	<span>{{ distance | numberWithCommas }}</span><small> miles</small>
   	</h1>
   
   	<div class="mileage__instructions">
   	Drag the markers around to calculate distance
 	</div>
 </div>
+--> 
 
-<!--form code --> 
+
+<!-- to-do list js --> 
+<script  src="src/todo.js"></script>
+
+<!--form js --> 
 <script src="src/jquery.js" type="text/javascript"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.1/lodash.min.js'></script>
 <script src='https://unpkg.com/fuse.js@2.5.0/src/fuse.min.js'></script>
 <script src='src/airports.js'></script>
 <script type="text/javascript" src="src/autocomplete.js"></script>
 
-<!-- map code --> 
+
+<!-- map js  
 <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/4.9.1/d3.min.js'></script>
 <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin.min.js'></script>
 <script src='https://codepen.io/shshaw/pen/epmrgO.js'></script>
 <script  src="src/script.js"></script>
-
-
-
+--> 
 
 </body>
 
