@@ -33,10 +33,32 @@ body
     margin: 0;
 }
 
+
+#app{
+  height: auto;
+  width: 100%;
+  height: auto;
+  margin: auto;
+  position: fixed;
+  top: 40%; left: 0; bottom: 0; right: 0;
+}
+
 #autocomplete{
   position:relative;
   float:left;
+  margin: 20px 0px 0px 0px;
+  border: none;
 }
+
+.easy-autocomplete-container {
+  left: 0;
+  position: absolute;
+  width: 40px;
+  z-index: 2;
+  margin: 20px 0px 0px 0px;
+  color:black;
+}
+
 
 button {
   position:relative;
@@ -45,8 +67,8 @@ button {
   color: #888;
   font-size: 20px;
   float: right;
-  width: auto;
-  margin: auto;
+  width: 2px;
+  margin: 20px;
   font-family: sans-serif;
   cursor: pointer;
   padding:auto;
@@ -125,8 +147,6 @@ li >  input[type="text"] {
 li > .delete:hover {
   color: #CF2323;
 }
-
-
 
 
 .container{ 

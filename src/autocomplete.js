@@ -1,15 +1,15 @@
 var options = {
   shouldSort: true,
-  threshold: 0.4,
+  threshold: 0.1,
   maxPatternLength: 32,
   keys: [{
-    name: 'iata',
+    name: 'LocationID',
     weight: 0.5
   }, {
-    name: 'name',
+    name: 'NAME',
     weight: 0.3
   }, {
-    name: 'city',
+    name: 'City',
     weight: 0.2
   }]
 };
@@ -55,7 +55,7 @@ function clearResults() {
 
 function selectIndex(index) {
   if (results.length >= index + 1) {
-    var output = results[index].city + " - " + results[index].iata 
+    var output = results[index].City + " - " + results[index].LocationID 
     ac.val(output);
     clearResults();
   }  
@@ -76,9 +76,8 @@ function search(e) {
     
     var divs = results.map(function(r, i) {
         return '<div class="autocomplete-result" data-index="'+ i +'">'
-             + '<div><b>'+ r.iata +'</b> - '+ r.name +'</div>'
-             + '<div class="autocomplete-location">'+ r.city +', '+ r.country +'</div>'
-             + '</div>';
+             + '<div><b>'+ r.LocationID +'</b> - '+ r.NAME +'</div>'
+             + '<div class="autocomplete-location">'+ r.City;
      });
     
     selectedIndex = -1;

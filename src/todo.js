@@ -18,12 +18,14 @@ var completedTasksHolder=document.getElementById("completed-tasks");//completed-
 var createNewTaskElement=function(taskString){
 
 	var listItem=document.createElement("li");
+	listItem.className = "class" + document.getElementsByTagName("li").length;
 	//label
 	var label=document.createElement("label");//label
 	//button.delete
 	var deleteButton=document.createElement("button");//delete button
 
 	label.innerText=taskString;
+	
 
 	//Each elements, needs appending
 	deleteButton.innerText="Delete";
@@ -95,7 +97,12 @@ var taskIncomplete=function(){
 
 
 //Set the click handler to the addTask function.
-addButton.addEventListener("click",addTask);
+addButton.addEventListener("click",function(){
+	if (taskInput.value != ""){
+		addTask();
+	}
+	});
+
 
 
 

@@ -1,7 +1,7 @@
 [
   {
     "NAME": "RIGOLET",
-    "City": "RIGOLET",
+    "City": "Rigolet",
     "PROV": "NL",
     "Lng": -58.4575,
     "Lat": 54.1797,
@@ -57,7 +57,7 @@
   },
   {
     "NAME": "VANCOUVER INTL",
-    "City": "RICHMOND",
+    "City": "VANCOUVER",
     "PROV": "BC",
     "Lng": -123.1626,
     "Lat": 49.1898,
