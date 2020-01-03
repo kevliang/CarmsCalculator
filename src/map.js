@@ -3,13 +3,10 @@ console.clear();
 /*$(document).ready(function(){
   $("#app").hide();
 });
-
 $('.autocomplete-results')
   .on('click', '.autocomplete-result', function(e) {
    $("#app").show();
   });
-
-
  $('.autocomplete-results')
   .on('keypress', ,(function(e){
   if (e.which == 13){ 
@@ -59,16 +56,16 @@ new Vue({
     // D3 US States map
     fetch('data/canada.json').
     then(response => response.json()).
-    then(states => {
+    then(provinces => {
 
       // Define path generator
       var path = d3.geoPath() // path generator that will convert GeoJSON to SVG paths
       .projection(projection); // tell path generator to use albersUsa projection
 
       // Bind the data to the SVG and create one path per GeoJSON feature
-      d3.select(this.$refs.states).
+      d3.select(this.$refs.provinces).
       selectAll("path").
-      data(states.features).
+      data(provinces.features).
       enter().
       append("path").
       attr("d", path);
@@ -214,6 +211,15 @@ new Vue({
       dist = dist * 60 * 1.1515;
       if (unit == "K") {dist = dist * 1.609344;}
       if (unit == "N") {dist = dist * 0.8684;}
+      dist = dist*1.60934*1.08;
+      if (dist < 463 ){
+        dist = 0.27867 * dist; 
+
+      } else if (dist >463 || dist < 3700 ){
+        dist = dist * 0.16508;
+      } else if (dist >3700){
+        dist = dist *0.14678;
+      }
       return dist;
 
     },
@@ -226,6 +232,7 @@ new Vue({
       var latLng2 = this.projection.invert([marker2.x, marker2.y]).reverse();
 
       this.distance = Math.round(this.calcDistance(latLng1[0], latLng1[1], latLng2[0], latLng2[1]));
+
       this.airplaneAnimate();
     },
 

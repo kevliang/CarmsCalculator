@@ -11,14 +11,13 @@
 var taskInput=document.getElementById("autocomplete");//Add a new task.
 var addButton=document.getElementsByTagName("button")[0];//first button
 var incompleteTaskHolder=document.getElementById("incomplete-tasks");//ul of #incomplete-tasks
-var completedTasksHolder=document.getElementById("completed-tasks");//completed-tasks
 
 
 //New task list item
 var createNewTaskElement=function(taskString){
 
 	var listItem=document.createElement("li");
-	listItem.className = "class" + document.getElementsByTagName("li").length;
+
 	//label
 	var label=document.createElement("label");//label
 	//button.delete
@@ -37,8 +36,6 @@ var createNewTaskElement=function(taskString){
 	return listItem;
 }
 
-
-
 var addTask=function(){
 	console.log("Add Task...");
 	//Create a new list item with the text from the #new-task:
@@ -47,14 +44,9 @@ var addTask=function(){
 	//Append listItem to incompleteTaskHolder
 	incompleteTaskHolder.appendChild(listItem);
 	bindTaskEvents(listItem, taskCompleted);
-
 	taskInput.value="";
 
 }
-
-
-
-
 
 //Delete task.
 var deleteTask=function(){
@@ -67,16 +59,13 @@ var deleteTask=function(){
 
 }
 
-
 //Mark task completed
 var taskCompleted=function(){
 		console.log("Complete Task...");
-	
 	//Append the task list item to the #completed-tasks
 	var listItem=this.parentNode;
 	completedTasksHolder.appendChild(listItem);
 				bindTaskEvents(listItem, taskIncomplete);
-
 }
 
 
@@ -90,21 +79,14 @@ var taskIncomplete=function(){
 			bindTaskEvents(listItem,taskCompleted);
 }
 
-
-
-
 //The glue to hold it all together.
-
 
 //Set the click handler to the addTask function.
 addButton.addEventListener("click",function(){
-	if (taskInput.value != ""){
+	if (taskInput.value !=""){
 		addTask();
-	}
-	});
-
-
-
+		}
+});
 
 var bindTaskEvents=function(taskListItem,checkBoxEventHandler){
 	console.log("bind list item events");

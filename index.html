@@ -11,24 +11,22 @@
 	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 	<link rel="icon" type="image/png" href="images/favicon.ico"/>
 	<link rel="stylesheet" type="text/css" href="styles/theme.css"/>
-  <link rel="stylesheet" type="text/css" href="styles/sorting.css"/>
-  
-
- <!-- <link rel="stylesheet" type="text/css" href="styles/easy-autocomplete.css">
- <script src="src/jquery.easy-autocomplete.js" type="text/javascript"></script> -->
+ 
   <script src="src/jquery.js" type="text/javascript"></script>
-  
 
 </head>
+
+<!-- emissions --> 
 
 <body id="top" itemtype="http://schema.org/WebPage">
 <div id="user-input">
 
 
-<!--
+
+
 <div id="app" class="mileage" >
   <svg class="mileage-map" ref="map" width="1260" height="1070" viewBox="-120 100 1260 1070">
-    <g class="mileage-map__states" ref="states"></g>
+    <g class="mileage-map__states" ref="provinces"></g>
     <g ref="airports">
       <g class="airport" :class="{ 'airport--current' : airport.current }"
          v-for="airport in airports">
@@ -52,22 +50,22 @@
         <text v-if="marker.airport" x="0" y="-42" text-anchor="middle" v-text="marker.airport.LocationID"></text>
       </transition>
     </g>
+
+
   </svg>
 
--->
-    <!--
-  	<h1 class="mileage__calculations" v-show="distance">
-    	<span>{{ distance | numberWithCommas }}</span><small> miles</small>
+  	<h1 class="mileage__calculations" id="distancebetween" v-show="distance">
+    	<span>{{ distance | numberWithCommas }}</span><small> Kg CO2</small>
   	</h1>
+
   
   	<div class="mileage__instructions">
   	Drag the markers around to calculate distance
 	</div>
-  -->
-<!--
+
 </div>
 
-<form method="post" action="">
+<form method="post" action="" id="sort-it">
   <section>
   <div class = "form-group">
    
@@ -78,87 +76,26 @@
       </label>
     
         <input id ="autocomplete" type="text" name="dep-city" placeholder="City or Airport Name ..." autocomplete="off" autofocus="on" />
-    
-      <button type="button" id="addbutton">Add</button>
+        <button type="button" id="addbutton">Add</button>
+        <ul id="incomplete-tasks"></ul>
 
-
-      <ul id="incomplete-tasks"></ul>
     </div>
-
   </div>
   </section>
-     
 </form>
 </div>
--->
-<form id="sort-it">
-    <ol>
-      <li>This is item #1 
-          <label for="custom-number-1">New order:</label>
-        <input id="custom-number-1" name="custom-number-1" type="number" min="1">
-      </li>
-        
-      <li>This is item #2 
-        <label for="custom-number-2">New order:</label>
-        <input id="custom-number-2" name="custom-number-2" type="number" min="1">
-      </li>
-        
-      <li>This is item #3 
-        <label for="custom-number-3">New order:</label>
-        <input id="custom-number-3" name="custom-number-3" type="number" min="1">
-      </li>
-        
-      <li>This is item #4 
-        <label for="custom-number-4">New order:</label>
-        <input id="custom-number-4" name="custom-number-4" type="number" min="1">
-      </li>
-        
-      <li>This is item #5 
-        <label for="custom-number-5">New order:</label>
-        <input id="custom-number-5" name="custom-number-5" type="number" min="1">
-      </li>
-    </ol>
-</form>
 
-
-
-<!-- easy - autocomplete 
-<script>
-var options = {
-  url: "data/canadianairport.json",
-
-  getValue: function(element) { 
-    return $(element).prop("City") + " " + $(element).prop("LocationID");
-  },
-
-
-  list: {
-    maxNumberOfElements: 3,
-    match: {
-      enabled: true
-    }
-  }
-};
-
-$("#autocomplete").easyAutocomplete(options);
-
-</script>
---> 
-
-    
-       
+          
 <!-- to-do list js --> 
 <script  src="src/todo.js"></script>
+
+<script src = "src/emissions.js"></script>
 
 <!--form js --> 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.1/lodash.min.js'></script>
 <script src='https://unpkg.com/fuse.js@2.5.0/src/fuse.min.js'></script>
 <script src='src/airports.js'></script>
 <script type="text/javascript" src="src/autocomplete.js"></script>
-
-<!-- sorting form --> 
-<script src='https://johnny.github.io/jquery-sortable/js/jquery-sortable-min.js'> </script>
-<script  src="src/sorting.js"></script>
 
 <!-- animate form --> 
 <script src='https://animejs.com/lib/anime.min.js'></script>

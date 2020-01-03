@@ -55,7 +55,9 @@ function clearResults() {
 
 function selectIndex(index) {
   if (results.length >= index + 1) {
-    var output = results[index].City + " - " + results[index].LocationID 
+    var LatCoordinates = results[index].Lat;
+    var LngCoordinates = results[index].Lng;
+    var output = results[index].City + " - " + results[index].LocationID +  " - " + LatCoordinates +  " - " + LngCoordinates;
     ac.val(output);
     clearResults();
   }  
@@ -75,9 +77,10 @@ function search(e) {
     numResults = results.length;
     
     var divs = results.map(function(r, i) {
+
         return '<div class="autocomplete-result" data-index="'+ i +'">'
-             + '<div><b>'+ r.LocationID +'</b> - '+ r.NAME +'</div>'
-             + '<div class="autocomplete-location">'+ r.City;
+             + '<div><b>'+ r.LocationID +'</b> - '+ r.City 
+             + '<div class="autocomplete-location">';
      });
     
     selectedIndex = -1;
