@@ -1,8 +1,8 @@
 @font-face {
-  font-family: 'Oswald';
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/oswald/v29/TK3_WkUHHAIjg75cFRf3bXL8LICs1_FvsUZiYA.ttf) format('truetype');
+    font-family: 'Oswald';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/oswald/v29/TK3_WkUHHAIjg75cFRf3bXL8LICs1_FvsUZiYA.ttf) format('truetype');
 }
 
 *
@@ -11,102 +11,112 @@
 }
 
 li{
-  clear:both;
-  list-style: none;
+    clear:both;
+    list-style: none;
 }
 
-html {
-  background: #34495D;
-  text-align: center;
-  color: #FFF;
-  font-family: 'Oswald', sans-serif;
-  font-weight: 300;
-  font-smooth: auto;
-  -webkit-font-smoothing: antialiased;
+html,body {
+    background: #34495D;
+    text-align: center;
+    color: #FFF;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    font-smooth: auto;
+    -webkit-font-smoothing: antialiased;
 }
 
-body
-{
+body {
     height: 100%;
-    display: flex;
+    /*display: flex;*/
     min-height: 100%;
     margin: 0;
 }
-
-
+#user-input {
+    width: 100%;
+    position: relative;
+}
 #app{
-  height: auto;
-  width: 100%;
-  height: auto;
-  margin: auto;
-  position: fixed;
-  top: 40%; left: 0; bottom: 0; right: 0;
+    /*    height: auto;
+        width: 100%;
+        height: auto;
+        margin: auto;
+        position: absolute;
+        top: 40%; left: 0; bottom: 0; right: 0;*/
+}
+
+#journeytype {
+    margin-top: 30px;
 }
 
 #autocomplete{
-  position:relative;
-  float:left;
-  margin: 20px 0px 0px 0px;
-  border: none;
+    /*position:relative;*/
+    /*    float:left;
+        margin: 20px 0px 0px 0px;
+        border: none;
+        width: 50%*/
 }
 
 .easy-autocomplete-container {
-  left: 0;
-  position: absolute;
-  width: 40px;
-  z-index: 2;
-  margin: 20px 0px 0px 0px;
-  color:black;
+    left: 0;
+    position: absolute;
+    width: 40px;
+    z-index: 2;
+    margin: 20px 0px 0px 0px;
+    color:black;
 }
 
 
 button {
-  position:relative;
-  background: none;
-  border: 0px;
-  color: #888;
-  font-size: 20px;
-  float: right;
-  width: 2px;
-  margin: 20px;
-  font-family: sans-serif;
-  cursor: pointer;
-  padding:auto;
+    /*    position:relative;
+        background: none;
+        border: 0px;
+        color: #888;
+        font-size: 20px;
+        float: right;
+        width: 2px;
+        margin: 20px;
+        font-family: sans-serif;
+        cursor: pointer;
+        padding:auto;*/
 
 }
 
+#addbutton {
+    /*margin-top: 30px;*/
+    width: 120px;
+}
+
 button:hover {
-  color: #0FC57C;
+    color: #0FC57C;
 }
 
 /* input text without focus */
 
 input[type="text"] {
-  margin: 0;
-  font-size: 18px;
-  line-height: 18px;
-  height: 18px;
-  padding: 10px;
-  border: none;
-  background: none;
-  border-radius: 6px;
-  font-family: Oswald, Lato, sans-serif;
-  color: white;
+    /*    margin: 0;
+        font-size: 18px;
+        line-height: 18px;
+        height: 18px;
+        padding: 10px;
+        border: none;
+        background: none;
+        border-radius: 6px;
+        font-family: Oswald, Lato, sans-serif;
+        color: white;*/
 }
 
 input[type="text"]:focus {
-  color: white;
+    /*color: white;*/
 }
 
-
-form, input
-{
- position: absolute;
- top: 65%;
- left: 35%;
- font-size: 15px;
- border: 0;
- background-color: transparent;
+form, input {
+    /*    position: absolute;
+        top: 65%;
+        left: 35%;*/
+    font-size: 15px;
+    border: 0;
+    background-color: transparent;
+    display: inline-block
 }
 
 input{ 
@@ -114,218 +124,269 @@ input{
     line-height: 3;
     left:0%;
     color:white;
- }
+}
 
 input#new-task {
-  float: left;
-  width: 400px;
+    float: left;
+    width: 400px;
 }
 
 
 li * {
-  float: left;
+    float: left;
 }
 
 li {
-  overflow: hidden;
-  padding: 20px 0;
-  border: none;
+    overflow: hidden;
+    padding: 20px 0;
+    border: none;
 
 }
 
 li > label {
-  font-size: 18px;
-  line-height: 40px;
-  width: 237px;
-  padding: 0 0 0 0px;
+    font-size: 18px;
+    /*line-height: 20px;*/
+    width: 200px;
+    padding: 0;
 }
 
 li >  input[type="text"] {
-  width: 226px;
+    width: 226px;
 }
 
 li > .delete:hover {
-  color: #CF2323;
+    color: #CF2323;
 }
 
 
 .container{ 
-  display:block;
-  width: 450px;
-  margin: auto;
-
-
- }
+    /*    display:block;
+        width: 450px;
+        margin: auto;*/
+}
 
 .autcomplete-wrapper{
     position: absolute;
 }
+.autocomplete-wrapper {
+    position: relative;
+}
 
 .autocomplete-results {
-  position: absolute;
-  background: white;
-  z-index: 1;
-  top: 140px;
-  left: 0;
-  font-size: 13px;
-  border: solid 1px #ddd;
-  border-top-width: 0;
-  border-bottom-color: #ccc;
-  box-shadow: 
-    0 5px 10px rgba(0, 0, 0, 0.2);
-  color:black;
+    position: absolute;
+    background: white;
+    z-index: 1;
+    top: 39px;
+    left: 0;
+    font-size: 13px;
+    border: solid 1px #ddd;
+    border-top-width: 0;
+    border-bottom-color: #ccc;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    color:black;
+    width: 100%;
+    display: none;
 }
 
 .autocomplete-result {
-  padding: 12px 15px;
-  border-bottom: solid 1px #eee;
-  cursor: pointer;
+    padding: 12px 15px;
+    border-bottom: solid 1px #eee;
+    cursor: pointer;
+    text-align: left;
+}
+
+.autocomplete-result:hover {
+    color: white;
+    background: #26C9FF;
+    border-bottom-color: #26C9FF;
+    outline: solid 1px #00b6f2;
+}
+
+.autocomplete-results .autocomplete-option {
+    text-align: left;
+    padding: 10px;
 }
 
 .autocomplete-result:last-child {
-  border-bottom-width: 0;
+    border-bottom-width: 0;
 }
 
 .autocomplete-location {
-  opacity: .8;
+    opacity: .8;
 }
 
-.autocomplete-results[data-highlight='0'] > :nth-child(1) {
-  color: white;
-  background: #26C9FF;
-  border-bottom-color: #26C9FF;
-  outline: solid 1px #00b6f2;
-}
+/*.autocomplete-results[data-highlight='0'] > :nth-child(1) {
+    color: white;
+    background: #26C9FF;
+    border-bottom-color: #26C9FF;
+    outline: solid 1px #00b6f2;
+}*/
 
-.autocomplete-results[data-highlight='1'] > :nth-child(2) {
-  color: white;
-  background: #26C9FF;
-  border-bottom-color: #26C9FF;
-  outline: solid 1px #00b6f2;
+/*.autocomplete-results[data-highlight='1'] > :nth-child(2) {
+    color: white;
+    background: #26C9FF;
+    border-bottom-color: #26C9FF;
+    outline: solid 1px #00b6f2;
 }
 
 .autocomplete-results[data-highlight='2'] > :nth-child(3) {
-  color: white;
-  background: #26C9FF;
-  border-bottom-color: #26C9FF;
-  outline: solid 1px #00b6f2;
-}
+    color: white;
+    background: #26C9FF;
+    border-bottom-color: #26C9FF;
+    outline: solid 1px #00b6f2;
+}*/
 
 
 
 .mileage__calculations /* answer */ { 
-  margin: 0;
-  font-size: 3rem;
-  font-weight: inherit;
+    margin: 0;
+    font-size: 3rem;
+    font-weight: inherit;
 }
 
 .mileage__calculations small {
-  font-size: 0.6em;
-  color: #ffa93a;
+    font-size: 0.6em;
+    color: #ffa93a;
 }
 .mileage-map {
-  display: block;
-  width: auto;
-  height: auto;
-  max-width: 90%;
-  max-height: 90%;
-  margin: auto auto 2rem;
-  overflow: visible;
+    display: block;
+    width: auto;
+    height: 60vh;
+/*    max-width: 90%;
+    max-height: 90%;*/
+    margin: auto auto 2rem;
+    overflow: visible;
 }
 .mileage-map__states {
-  stroke: #34495D;
-  stroke-width: 2;
-  fill: #EE7738;
+    stroke: #34495D;
+    stroke-width: 2;
+    fill: #EE7738;
 }
 .marker {
-  fill: #ffa93a;
-  stroke: #FFF;
-  stroke-width: 1;
-  cursor: pointer;
-  transition: opacity 0.3s linear;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+    fill: #ffa93a;
+    stroke: #FFF;
+    stroke-width: 1;
+    cursor: pointer;
+    transition: opacity 0.3s linear;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .marker > * {
-  transition: -webkit-transform 0.3s cubic-bezier(0.6, 0, 0.5, 1);
-  transition: transform 0.3s cubic-bezier(0.6, 0, 0.5, 1);
-  transition: transform 0.3s cubic-bezier(0.6, 0, 0.5, 1), -webkit-transform 0.3s cubic-bezier(0.6, 0, 0.5, 1);
+    transition: -webkit-transform 0.3s cubic-bezier(0.6, 0, 0.5, 1);
+    transition: transform 0.3s cubic-bezier(0.6, 0, 0.5, 1);
+    transition: transform 0.3s cubic-bezier(0.6, 0, 0.5, 1), -webkit-transform 0.3s cubic-bezier(0.6, 0, 0.5, 1);
 }
 .marker text {
-  stroke: none;
-  fill: #FFF;
-  font-family: inherit;
-  font-size: 20px;
-  font-weight: 200;
+    stroke: none;
+    fill: #FFF;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 200;
 }
 
 .marker-fade-leave-active,
 .marker-fade-enter-active {
-  transition: opacity 0.3s linear;
+    transition: opacity 0.3s linear;
 }
 .marker-fade-enter,
 .marker-fade-leave-to {
-  opacity: 0;
+    opacity: 0;
 }
 .marker--current {
-  opacity: 0.8;
-  pointer-events: none;
+    opacity: 0.8;
+    pointer-events: none;
 }
 .marker--current > * {
-  -webkit-transform: scale(0.8);
-          transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
 }
 /* ////////////////////////////////////////////////////////////////////////// */
 .airport {
-  fill: #FFF;
-  stroke-width: 2;
-  stroke: transparent;
-  transition: stroke 0.3s linear;
+    fill: #FFF;
+    stroke-width: 2;
+    stroke: transparent;
+    transition: stroke 0.3s linear;
 }
 .airport:hover {
-  stroke: rgba(255, 255, 255, 0.3);
+    stroke: rgba(255, 255, 255, 0.3);
 }
 .airport--current,
 
 .airport--current:hover {
-  stroke: #FFF;
-  stroke: rgba(255, 255, 255, 0.8);
+    stroke: #FFF;
+    stroke: rgba(255, 255, 255, 0.8);
 }
 .airport__range {
-  fill: transparent;
-  cursor: pointer;
+    fill: transparent;
+    cursor: pointer;
 }
 .marker-connector {
-  fill: none;
-  stroke: #FFF;
-  stroke-width: 2;
-  stroke-dasharray: 6 6;
-  pointer-events: none;
-  -webkit-animation: marching-ants 1s linear 0s infinite;
-          animation: marching-ants 1s linear 0s infinite;
+    fill: none;
+    stroke: #FFF;
+    stroke-width: 2;
+    stroke-dasharray: 6 6;
+    pointer-events: none;
+    -webkit-animation: marching-ants 1s linear 0s infinite;
+    animation: marching-ants 1s linear 0s infinite;
 }
 
 @-webkit-keyframes marching-ants {
-  from {
-    stroke-dashoffset: 0;
-  }
-  to {
-    stroke-dashoffset: 12;
-  }
+    from {
+        stroke-dashoffset: 0;
+    }
+    to {
+        stroke-dashoffset: 12;
+    }
 }
 @keyframes marching-ants {
-  from {
-    stroke-dashoffset: 0;
-  }
-  to {
-    stroke-dashoffset: 12;
-  }
+    from {
+        stroke-dashoffset: 0;
+    }
+    to {
+        stroke-dashoffset: 12;
+    }
 }
 
+#user-input,#emission-data {
+    height: 100vh;
+    display: inline-block;
+}
+
+#sort-it {
+    width: 35vw;
+}
 .airplane {
-  pointer-events: none;
-  fill: #FFF;
-  opacity: 0;
+    pointer-events: none;
+    fill: #FFF;
+    opacity: 0;
+}
+
+#incomplete-tasks {
+    position: absolute;
+    left: 25px;
+    top: 0;
+    padding: 0;
+    max-height: 80%;
+    overflow-y: auto;
+}
+#incomplete-tasks .delete {
+    width: 65px;
+    margin: 0;
+    background: none;
+    border: 0px;
+    color: #888;
+    font-size: 20px;
+    float: right;
+    font-family: sans-serif;
+    cursor: pointer;
+    padding:auto;
+}
+#calculate {
+    width: 250px;
+    margin-top: 50px;
+    background: none;
+    border-color: #fff;
+    outline: 0 none;
 }

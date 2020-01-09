@@ -278,3 +278,4 @@ a:hover {
 .icon--order-success svg circle {
     -webkit-animation: checkmark-circle 0.6s ease-in-out backwards;
     animation: checkmark-circle 0.6s ease-in-out backwards
+}

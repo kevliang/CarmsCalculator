@@ -1,115 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
+        <meta charset="utf-8">
+        <title>CaRMS Carbon Calculator </title>
+        <meta name="description" content="Calculating the Environmental Impact of the CaRMS Tour"/>
+        <meta name="format-detection" content="telephone=no"/>
+        <meta name="author" content="Kevin E Liang" />
+        <meta name="HandheldFriendly" content="True"/>
+        <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+        <link rel="icon" type="image/png" href="images/favicon.ico"/>
+        <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="styles/theme.css"/>
+        <script src="src/jquery.js" type="text/javascript"></script>
+        <script src="src/bootstrap.min.js" type="text/javascript"></script>
+        <!-- jquery ui for dragging locations --> 
+        <script src="src/jquery-ui.js" type="text/javascript"></script>
+    </head>
+    <!-- emissions --> 
+    <body id="top" itemtype="http://schema.org/WebPage">
+        <div id="user-input">
+            <div id="app" class="mileage" >
+                <svg class="mileage-map" ref="map" viewBox="-250 -910 1260 1070">
+                <g class="mileage-map__states" ref="provinces"></g>
+                <g ref="airports">
+                <g class="airport" :class="{ 'airport--current' : airport.current }" v-for="airport in airports">
+                   <circle r="3" :cx="airport.x" :cy="airport.y" class="airport__marker" />
+                <circle r="16" :cx="airport.x" :cy="airport.y" class="airport__range" />
+                <!--                <circle r="16" :cx="airport.x" :cy="airport.y" class="airport__range"
+                                        @mousemove="airportSnap($event, airport)"
+                                        @mouseup="airportClick($event, airport)"
+                                        @mouseleave.self="airportLeave($event, airport)" />-->
+                </g>
+                </g>
 
-	<meta charset="utf-8">
-	<title>CaRMS Carbon Calculator </title>
-	<meta name="description" content="Calculating the Environmental Impact of the CaRMS Tour"/>
-	<meta name="format-detection" content="telephone=no"/>
-	<meta name="author" content="Kevin E Liang" />
-	<meta name="HandheldFriendly" content="True"/>
-	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-	<link rel="icon" type="image/png" href="images/favicon.ico"/>
-	<link rel="stylesheet" type="text/css" href="styles/theme.css"/>
- 
-  <script src="src/jquery.js" type="text/javascript"></script>
+                <path class="marker-connector" :d="markerConnect()"></path>
 
-</head>
+                <g class="airplane" ref="airplane">
+                <path class="airplane__icon" d="M21 15.984l-8.016-2.484v5.484l2.016 1.5v1.5l-3.516-0.984-3.469 0.984v-1.5l1.969-1.5v-5.484l-7.969 2.484v-1.969l7.969-5.016v-5.484c0-0.844 0.656-1.5 1.5-1.5s1.5 0.656 1.5 1.5v5.484l8.016 5.016v1.969z" transform="translate(-8,-15) scale(1.2)"></path>
+                </g>
 
-<!-- emissions --> 
+                <g v-for="marker in markers" @mousedown="markerSet($event,marker)" class="marker" :class="{ 'marker--current' : marker.current }" :transform="'translate('+marker.x+','+marker.y+')'">
+                   <path fill="{{marker.fill}}" d="M0 0l28.592-28.592c15.78-15.78 15.908-41.24.128-57.02a40.424 40.424 0 0 0-57.124 57.2z"></path>
+                <transition name="marker-fade">
+                    <text v-if="marker.airport" x="0" y="-42" text-anchor="middle" v-text="marker.airport.LocationID"></text>
+                </transition>
+                </g>
+                </svg>
+            </div>
 
-<body id="top" itemtype="http://schema.org/WebPage">
-<div id="user-input">
+            <form method="post" action="" id="sort-it">
+                <h2 class ="control-label mb-5" for="autocomplete">
+                    I'm starting my CaRMS Tour from
+                </h2>
+                <div class="form-group">
+                    <input id="autocomplete" class="form-control" type="text" name="dep-city" placeholder="City or Airport Name ..." autocomplete="off" autofocus="on" />
+                </div>
+                <div class="form-group">
+                    <select id="journeytype" class="form-control" name="journeytype" style="display: none;">
+                        <option value="1" selected="">Flying</option>
+                        <option value="0">Not Flying</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-primary" id="addbutton">Add</button>
+                <ul id="incomplete-tasks" class="mt-5"></ul>
+                <div class="clearfix"></div>
+                <button type="button" class="btn btn-primary mt-4" id="calculate" style="display: none;">Calculate My Emissions</button>
+            </form>
+        </div>
+        <div class="clearfix"></div>
+        <div id="emission-data" style="display: none;">
+            <div class="container p-5">
+                <h2>Possible Emission Calculations</h2>
+                <h1 class="mileage__calculations mt-5" id="distancebetween">
+                    <span data-distance=""></span><small> Kilometres</small>
+                </h1>
+                <h1 class="mileage__calculations mt-5" id="co2emission">
+                    <span data-emission=""></span><small> Kg CO2</small>
+                </h1>
 
+                <form method="post" action="" class="mt-5" id="form-submit">
+                    <div class="form-group">
+                        <input id="university" class="form-control" type="text" name="university" placeholder="University Name" autocomplete="off" />
+                    </div>
+                    <button type="button" class="btn btn-primary" id="submit">Submit</button>
+                </form>
+            </div>
+        </div>
 
+        <script src='src/airports.js'></script>
+        <!-- map js --> 
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/4.9.1/d3.min.js'></script>
+        <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin.min.js'></script>
+        <script src='https://codepen.io/shshaw/pen/epmrgO.js'></script>
 
+        <!-- to-do list js --> 
+        <script  src="src/todo.js"></script>
+        <script src = "src/emissions.js"></script>
 
-<div id="app" class="mileage" >
-  <svg class="mileage-map" ref="map" width="1260" height="1070" viewBox="-120 100 1260 1070">
-    <g class="mileage-map__states" ref="provinces"></g>
-    <g ref="airports">
-      <g class="airport" :class="{ 'airport--current' : airport.current }"
-         v-for="airport in airports">
-        <circle r="3" :cx="airport.x" :cy="airport.y" class="airport__marker" />
-        <circle r="16" :cx="airport.x" :cy="airport.y" class="airport__range"
-                @mousemove="airportSnap($event, airport)"
-                @mouseup="airportClick($event, airport)"
-                @mouseleave.self="airportLeave($event, airport)" />
-      </g>
-    </g>
+        <script  src="src/map.js"></script>
+        <!--form js --> 
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.1/lodash.min.js'></script>
+        <script src='https://unpkg.com/fuse.js@2.5.0/src/fuse.min.js'></script>
+        <script type="text/javascript" src="src/autocomplete.js"></script>
+        <!-- animate form --> 
+        <script src='https://animejs.com/lib/anime.min.js'></script>
+        <script src="src/animate.js"></script>
 
-    <path class="marker-connector" :d="markerConnect()"></path>
-
-    <g class="airplane" ref="airplane">
-      <path class="airplane__icon" d="M21 15.984l-8.016-2.484v5.484l2.016 1.5v1.5l-3.516-0.984-3.469 0.984v-1.5l1.969-1.5v-5.484l-7.969 2.484v-1.969l7.969-5.016v-5.484c0-0.844 0.656-1.5 1.5-1.5s1.5 0.656 1.5 1.5v5.484l8.016 5.016v1.969z" transform="translate(-8,-15) scale(1.2)"></path>
-    </g>
-
-    <g v-for="marker in markers" @mousedown="markerSet($event,marker)" class="marker" :class="{ 'marker--current' : marker.current }" :transform="'translate('+marker.x+','+marker.y+')'">
-      <path fill="{{marker.fill}}" d="M0 0l28.592-28.592c15.78-15.78 15.908-41.24.128-57.02a40.424 40.424 0 0 0-57.124 57.2z"></path>
-      <transition name="marker-fade">
-        <text v-if="marker.airport" x="0" y="-42" text-anchor="middle" v-text="marker.airport.LocationID"></text>
-      </transition>
-    </g>
-
-
-  </svg>
-
-  	<h1 class="mileage__calculations" id="distancebetween" v-show="distance">
-    	<span>{{ distance | numberWithCommas }}</span><small> Kg CO2</small>
-  	</h1>
-
-  
-  	<div class="mileage__instructions">
-  	Drag the markers around to calculate distance
-	</div>
-
-</div>
-
-<form method="post" action="" id="sort-it">
-  <section>
-  <div class = "form-group">
-   
-
-   <div class="container">
-      <label class ="control-label" for="dep-city"> 
-        I'm starting my CaRMS Tour from 
-      </label>
-    
-        <input id ="autocomplete" type="text" name="dep-city" placeholder="City or Airport Name ..." autocomplete="off" autofocus="on" />
-        <button type="button" id="addbutton">Add</button>
-        <ul id="incomplete-tasks"></ul>
-
-    </div>
-  </div>
-  </section>
-</form>
-</div>
-
-          
-<!-- to-do list js --> 
-<script  src="src/todo.js"></script>
-
-<script src = "src/emissions.js"></script>
-
-<!--form js --> 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.1/lodash.min.js'></script>
-<script src='https://unpkg.com/fuse.js@2.5.0/src/fuse.min.js'></script>
-<script src='src/airports.js'></script>
-<script type="text/javascript" src="src/autocomplete.js"></script>
-
-<!-- animate form --> 
-<script src='https://animejs.com/lib/anime.min.js'></script>
-<script src="src/animate.js"></script>
-
-<!-- map js --> 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/d3/4.9.1/d3.min.js'></script>
-<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin.min.js'></script>
-<script src='https://codepen.io/shshaw/pen/epmrgO.js'></script>
-<script  src="src/map.js"></script>
-
-
-</body>
-
+    </body>
 </html>
