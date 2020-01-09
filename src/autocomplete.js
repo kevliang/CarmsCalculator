@@ -17,12 +17,10 @@ var options = {
 var fuse = new Fuse(airports, options);
 
 
-var ac = $('#autocomplete')
-        .on('click', function (e) {
-            e.stopPropagation();
-        })
-        .on('focus keyup', search)
-        .on('keydown', onKeyDown);
+var ac = $('#autocomplete').on('click', function (e) {
+    e.stopPropagation();
+}).on('focus keyup', search);
+//        .on('keydown', onKeyDown);
 
 var wrap = $('<div>')
         .addClass('autocomplete-wrapper')
@@ -38,14 +36,12 @@ var list = $('<div>')
         })
         .appendTo(wrap);
 
-$(document)
-        .on('mouseover', '.autocomplete-result', function (e) {
-            var index = parseInt($(this).data('index'), 10);
-            if (!isNaN(index)) {
-                list.attr('data-highlight', index);
-            }
-        })
-        .on('click', clearResults);
+$(document).on('mouseover', '.autocomplete-result', function (e) {
+    var index = parseInt($(this).data('index'), 10);
+    if (!isNaN(index)) {
+        list.attr('data-highlight', index);
+    }
+}).on('click', clearResults);
 
 function clearResults() {
     results = [];

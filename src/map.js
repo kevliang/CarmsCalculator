@@ -1,4 +1,4 @@
-console.clear();
+//console.clear();
 
 /*$(document).ready(function(){
  $("#app").hide();
@@ -308,6 +308,8 @@ map = new Vue({
         calculateEmission() {
             this.emission = 0;
             var emission = 0;
+            var totalEmission = 0;
+            var distance;
             var marker1 = null, latLng1 = null, marker2 = null, latLng2 = null;
             for (var i = 0; i < this.markers.length; i++) {
                 if (this.markers[i].flying) {
@@ -320,19 +322,22 @@ map = new Vue({
                     }
                 }
                 if (marker1 && marker2) {
-                    emission += Math.round(this.calcDistance(latLng1[0], latLng1[1], latLng2[0], latLng2[1]));
+                    distance = Math.round(this.calcDistance(latLng1[0], latLng1[1], latLng2[0], latLng2[1]));
+
+                    emission = distance * 1.08;
+                    if (emission < 463) {
+                        emission = emission * 0.27867;
+                    } else if (emission > 463 && emission < 3700) {
+                        emission = emission * 0.16508;
+                    } else {
+                        emission = emission * 0.14678;
+                    }
+                    totalEmission += emission;
+
                     marker1 = marker2, latLng1 = latLng2, marker2 = null, latLng2 = null;
                 }
             }
-            emission = emission * 1.08;
-            if (emission < 463) {
-                emission = emission * 0.27867;
-            } else if (emission > 463 && emission < 3700) {
-                emission = emission * 0.16508;
-            } else {
-                emission = emission * 0.14678;
-            }
-            this.emission = Math.round(emission).toFixed();
+            this.emission = Math.round(totalEmission).toFixed();
         }
     }
 });

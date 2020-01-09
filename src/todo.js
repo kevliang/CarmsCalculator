@@ -13,6 +13,7 @@ var addButton = document.getElementById("addbutton");//first button
 var calculateButton = document.getElementById("calculate");//first button
 var incompleteTaskHolder = document.getElementById("incomplete-tasks");//ul of #incomplete-tasks
 
+//location drag & re-arrange
 $("#incomplete-tasks").sortable({
     scroll: false,
     update: function (event, ui) {
@@ -21,13 +22,19 @@ $("#incomplete-tasks").sortable({
             sortArr.push($(this).attr("data-location"));
         });
         map.markers.sort(function (a, b) {
-            return sortArr.indexOf(a.airport.LocationID) - sortArr.indexOf(b.airport.LocationID);
+            return sortArr.indexOf(a.airport.LocationID + a.index) - sortArr.indexOf(b.airport.LocationID + b.index);
         });
         map.markerDistance();
         updateLabelText();
     }
 });
 $("#incomplete-tasks").disableSelection();
+
+$("#autocomplete").keydown(function (e) {
+    if (e.keyCode == 13) {
+        e.preventDefault();
+    }
+});
 
 //New task list item
 var createNewTaskElement = function (taskString) {
@@ -59,7 +66,7 @@ var addTask = function () {
 };
 
 //Delete task.
-var deleteTask = function () {
+var deleteTask = function (e) {
     console.log("Delete Task...");
     var listItem = this.parentNode;
     var ul = listItem.parentNode;
@@ -116,10 +123,10 @@ var bindTaskEvents = function (taskListItem, checkBoxEventHandler) {
 
 //cycle over incompleteTaskHolder ul list items
 //for each list item
-for (var i = 0; i < incompleteTaskHolder.children.length; i++) {
-    //bind events to list items chldren(tasksCompleted)
-    bindTaskEvents(incompleteTaskHolder.children[i], taskCompleted);
-}
+//for (var i = 0; i < incompleteTaskHolder.children.length; i++) {
+//    //bind events to list items chldren(tasksCompleted)
+//    bindTaskEvents(incompleteTaskHolder.children[i], taskCompleted);
+//}
 
 //add marker
 function addMarker($li) {
@@ -133,9 +140,10 @@ function addMarker($li) {
         startY: airport.y,
         fill: '#f47825',
         flying: $('#journeytype').val() == 1,
-        current: true
+        current: true,
+        index: map.markers.length
     };
-    $li.attr("data-location", airport.LocationID);
+    $li.attr("data-location", airport.LocationID + map.markers.length);
 
     map.markers.push(marker);
     map.currentAirport = airport;
