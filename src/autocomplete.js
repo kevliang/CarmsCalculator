@@ -19,8 +19,8 @@ var fuse = new Fuse(airports, options);
 
 var ac = $('#autocomplete').on('click', function (e) {
     e.stopPropagation();
-}).on('focus keyup', search);
-//        .on('keydown', onKeyDown);
+}).on('focus keyup', search)
+        .on('keyup', onKeyDown);
 
 var wrap = $('<div>')
         .addClass('autocomplete-wrapper')
@@ -103,32 +103,37 @@ function search(e) {
 }
 
 function onKeyDown(e) {
-    switch (e.which) {
-        case 38: // up
-            selectedIndex--;
-            if (selectedIndex <= -1) {
-                selectedIndex = -1;
-            }
-            list.attr('data-highlight', selectedIndex);
-            break;
-        case 13: // enter
-            selectIndex(selectedIndex);
-            break;
-        case 9: // enter
-            selectIndex(selectedIndex);
-            e.stopPropagation();
-            return;
-        case 40: // down
-            selectedIndex++;
-            if (selectedIndex >= numResults) {
-                selectedIndex = numResults - 1;
-            }
-            list.attr('data-highlight', selectedIndex);
-            break;
-
-        default:
-            return; // exit this handler for other keys
+    if (ac.val().length <= 0) {
+        return;
+    }
+    if (e.which != 38 && e.which != 13 && e.which != 40) {
+        return;
     }
     e.stopPropagation();
     e.preventDefault(); // prevent the default action (scroll / move caret)
+
+    var curIndex = $(".autocomplete-results > .autocomplete-result.active").index();
+    var length = $(".autocomplete-results > .autocomplete-result").length;
+    $(".autocomplete-results > .autocomplete-result.active").removeClass("active");
+    switch (e.which) {
+        case 38: // up
+            if (curIndex == -1) {
+                $(".autocomplete-results > .autocomplete-result:last").addClass("active");
+            } else {
+                $(".autocomplete-results > .autocomplete-result:eq(" + (curIndex - 1 < 0 ? (length - 1) : (--curIndex)) + ")").addClass("active");
+            }
+            break;
+        case 13: // enter
+            $(".autocomplete-results > .autocomplete-result:eq(" + curIndex + ")").click();
+            break;
+        case 40: // down
+            if (curIndex == -1) {
+                $(".autocomplete-results > .autocomplete-result:first").addClass("active");
+            } else {
+                $(".autocomplete-results > .autocomplete-result:eq(" + (curIndex + 1 >= length ? 0 : (++curIndex)) + ")").addClass("active");
+            }
+            break;
+        default:
+            return; // exit this handler for other keys
+    }
 }

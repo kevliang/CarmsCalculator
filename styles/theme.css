@@ -195,7 +195,7 @@ li > .delete:hover {
     text-align: left;
 }
 
-.autocomplete-result:hover {
+.autocomplete-result:hover,.autocomplete-result.active {
     color: white;
     background: #26C9FF;
     border-bottom-color: #26C9FF;
