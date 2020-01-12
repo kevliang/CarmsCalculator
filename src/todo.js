@@ -37,7 +37,7 @@ $("#autocomplete").keydown(function (e) {
 });
 
 //New task list item
-var createNewTaskElement = function (taskString) {
+var createNewTaskElement = function (taskString, flyingStatus) {
     var listItem = document.createElement("li");
     //label
     var label = document.createElement("label");//label
@@ -45,19 +45,23 @@ var createNewTaskElement = function (taskString) {
     var deleteButton = document.createElement("button");//delete button
     label.className = "mb-0";
     label.innerText = taskString;
+    label.id = taskString + flyingStatus;
     //Each elements, needs appending
-    deleteButton.innerText = "Delete";
-    deleteButton.className = "delete";
+    deleteButton.className = "delete btn";
+
+    var deleteIcon = document.createElement("i");
+    deleteIcon.className ="fa fa-trash";
+    deleteButton.appendChild(deleteIcon);
     //and appending.
     listItem.appendChild(label);
     listItem.appendChild(deleteButton);
     return listItem;
 };
 
-var addTask = function () {
+var addTask = function (flyingStatus) {
     console.log("Add Task...");
     //Create a new list item with the text from the #new-task:
-    var listItem = createNewTaskElement(taskInput.value);
+    var listItem = createNewTaskElement(taskInput.value, flyingStatus);
     //Append listItem to incompleteTaskHolder
     incompleteTaskHolder.appendChild(listItem);
     bindTaskEvents(listItem, taskCompleted);
@@ -103,12 +107,12 @@ var taskIncomplete = function () {
     bindTaskEvents(listItem, taskCompleted);
 };
 
-//The glue to hold it all together.
 
 //Set the click handler to the addTask function.
 addButton.addEventListener("click", function () {
     if (taskInput.value != "") {
-        addTask();
+        var flyingStatus = document.getElementById("journeytype").value;
+        addTask(flyingStatus);
     }
 });
 
@@ -156,10 +160,21 @@ function addMarker($li) {
 //on calculate emission button click
 calculateButton.addEventListener("click", function () {
     updateEmissionData();
+    updateFormData();
     $("html, body").stop().animate({
         scrollTop: $("#emission-data").position().top
     }, 500);
 });
+
+function updateFormData(){
+    var i=0;
+    var lengthOfResponse = document.querySelector("#incomplete-tasks").childElementCount;  
+    for(;i<lengthOfResponse;i++){
+        var temp = "#city" + i; 
+        document.querySelector(temp).value = document.querySelector("#incomplete-tasks").children[i].children[0].id;
+    }
+
+}
 
 function updateEmissionData() {
     $("#distancebetween [data-distance]").text(map.distance);

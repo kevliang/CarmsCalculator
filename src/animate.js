@@ -34,7 +34,7 @@ var translate_button = anime({
     targets: document.querySelector("#incomplete-tasks"),
     translateY: ['0', '0'],
     translateX: ['0', '0'],
-    scale: 1.1,
+    scale: 1.0,
     duation: 500,
     autoplay: false,
     easing: 'easeOutExpo',
