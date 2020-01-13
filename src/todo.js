@@ -164,6 +164,9 @@ calculateButton.addEventListener("click", function () {
     $("html, body").stop().animate({
         scrollTop: $("#emission-data").position().top
     }, 500);
+    animateValue(objectEmission, 0, objectEmission.innerHTML,1500);
+    animateValue(objectDistance, 0, objectDistance.innerHTML, 1500);
+    animateValue(objectCity, 0, objectCity.innerHTML, 500 );
 });
 
 function updateFormData(){
@@ -180,6 +183,7 @@ function updateEmissionData() {
     $("#distancebetween [data-distance]").text(map.distance);
     map.calculateEmission();
     $("#co2emission [data-emission]").text(map.emission);
+    document.querySelector("#totalCities").innerHTML = document.querySelector("#incomplete-tasks").childElementCount;
     $("#emission-data").show();
 }
 

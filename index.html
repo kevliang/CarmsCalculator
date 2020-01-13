@@ -19,6 +19,10 @@
     </head>
     <!-- emissions -->
     <body id="top" itemtype="http://schema.org/WebPage">
+        <div id ="introduction" class="container">
+            <h1>What is the Environmental Impact of your CaRMS Tour?</h1>
+            <h5>This calculator assesses the emissions on from flights taken during the Canadian residency interview tour</h5>
+        </div>
         <div id="user-input">
             <div id="app" class="mileage mt-3">
                 <svg class="mileage-map" ref="map" viewBox="-130 -900 1260 1070">
@@ -72,12 +76,29 @@
         <div id="emission-data" style="display: none;">
             <div class="container p-5">
                 <h2>Possible Emission Calculations</h2>
-                <h1 class="mileage__calculations mt-5" id="distancebetween">
-                    <span data-distance=""></span><small> Kilometres</small>
-                </h1>
-                <h1 class="mileage__calculations mt-5" id="co2emission">
-                    <span data-emission=""></span><small> Kg CO2</small>
-                </h1>
+                <h6>Source: Estimates based on economy class seats </h6>
+
+                <div class="container">
+                    <div class ="row">
+                        <div class ="col-sm">
+                        <h1 class="mileage__calculations mt-5" id="numberofcities">
+                            <span id = "totalCities" data-city=""></span><small> Cities Visited</small>
+                        </h1>
+                        </div>
+
+                        <div class ="col-sm">
+                        <h1 class="mileage__calculations mt-5" id="distancebetween">
+                            <span id = "totalDistance" data-distance=""></span>
+                            <small> Km Travelled</small>
+                        </h1>
+                        </div>
+                        <div class="col-sm">
+                        <h1 class="mileage__calculations mt-5" id="co2emission">
+                            <span id = "totalEmission" data-emission=""></span><small> Kg CO2 Emitted</small>
+                        </h1>
+                        </div>
+                    </div>
+                </div>
 
             <!--  <form method="post" action="" class="mt-5" id="form-submit">
                     <div class="form-group">
@@ -90,9 +111,9 @@
                 <form class="form mt-5" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSejY5ykx9XWxh_UxnaaAFWOpVQJP2Q2bwVNcnINXDnpMMKXRg/formResponse" target="_self">
                     <div class="form-group">
                         <label>I am from</label>
-                        <input id="schooloforigin" name="entry.735375071" type="text" placeholder="Medical School Name"/>
+                        <input id="schooloforigin" name="entry.735375071" type="text" placeholder=" Medical School Name"/>
                         <label>I am applying to the following specialty(ies)</label>
-                        <input id="specialties" name="entry.1179383716" placeholder="Specialty(ies)" type="text" />
+                        <input id="specialties" name="entry.1179383716" placeholder=" Specialty(ies)" type="text" />
                         
                         <input id="city0" name="entry.599602472" style="display:none" type="text" />
                         <input id="city1" name="entry.589350821" style="display:none" type="text" />
@@ -156,6 +177,10 @@
         <!-- animate form --> 
         <script src='https://animejs.com/lib/anime.min.js'></script>
         <script src="src/animate.js"></script>
+
+        <!-- results --> 
+        <script src="src/results.js"></script>
+        
 
     </body>
 </html>

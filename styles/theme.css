@@ -31,6 +31,15 @@ body {
     min-height: 100%;
     margin: 0;
 }
+
+
+#introduction{
+    width:100%;
+    position:relative;
+    margin-top: 100px;
+    margin-bottom:40px;
+}
+
 #user-input {
     width: 100%;
     position: relative;
@@ -46,6 +55,7 @@ body {
 
 #journeytype {
     margin-top: 30px;
+    padding-right:30px;
 }
 
 #autocomplete{
@@ -165,7 +175,7 @@ li > .delete:hover {
         margin: auto;*/
 }
 
-.autcomplete-wrapper{
+.autocomplete-wrapper{
     position: absolute;
 }
 .autocomplete-wrapper {
